@@ -6,6 +6,8 @@ import livereload from 'rollup-plugin-livereload'
 import { terser } from 'rollup-plugin-terser'
 import css from 'rollup-plugin-css-only'
 
+import child from 'child_process'
+
 import { configureSvelte } from './svelte.config.js'
 import { configureTypescript } from './typescript.config.js'
 import { configureCommonJS } from './commonjs.config.js'
@@ -22,7 +24,7 @@ function serve() {
 	return {
 		writeBundle() {
 			if (server) return
-			server = require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
+			server = child.spawn('npm', ['run', 'start', '--', '--dev'], {
 				stdio: ['ignore', 'inherit', 'inherit'],
 				shell: true
 			})
@@ -37,7 +39,7 @@ export default {
 	input: 'src/main.ts',
 
 	output: {
-		sourcemap: true,
+		sourcemap: !production,
 		format: 'iife',
 		name: 'app',
 		file: 'public/build/bundle.js'
