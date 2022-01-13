@@ -1,4 +1,4 @@
-export function configureCommonJS(develop) {
+export const configureCommonJS = (develop) => {
   return {
     sourceMap: develop,
     transformMixedEsModules: true,

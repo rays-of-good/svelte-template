@@ -1,4 +1,4 @@
-export function configureTypescript(develop) {
+export const configureTypescript = (develop) => {
   return {
     sourceMap: develop,
   }

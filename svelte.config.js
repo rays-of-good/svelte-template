@@ -5,7 +5,7 @@ import mixins from 'postcss-mixins'
 import autoprefixer from "autoprefixer"
 import cssnano from 'cssnano'
 
-export function configureSvelte(develop) {
+export const configureSvelte = (develop) => {
   return {
     preprocess: sveltePreprocess({
       sourceMap: develop,

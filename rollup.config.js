@@ -12,7 +12,7 @@ import { configureSvelte } from './svelte.config.js'
 import { configureTypescript } from './typescript.config.js'
 import { configureCommonJS } from './commonjs.config.js'
 
-function serve() {
+const serve = () => {
 	let server
 
 	const toExit = () => {
