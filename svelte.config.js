@@ -5,20 +5,20 @@ import mixins from 'postcss-mixins'
 import autoprefixer from "autoprefixer"
 import cssnano from 'cssnano'
 
-export function configureSvelte(production) {
+export function configureSvelte(develop) {
   return {
     preprocess: sveltePreprocess({
-      sourceMap: !production,
+      sourceMap: develop,
       postcss: {
         plugins: [nested, variables, mixins, autoprefixer, cssnano]
       },
     }),
     compilerOptions: {
-      dev: !production,
+      dev: develop,
     },
   }
 }
 
-let s = configureSvelte(true)
+let s = configureSvelte(false)
 
 export default s

@@ -3,6 +3,7 @@
   "compilerOptions": {
     "alwaysStrict": true,
     "isolatedModules": true,
+    "inlineSources": false,
     "types": [
       "svelte"
     ]

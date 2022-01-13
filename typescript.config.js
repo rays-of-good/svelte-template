@@ -1,10 +1,9 @@
-export function configureTypescript(production) {
+export function configureTypescript(develop) {
   return {
-    sourceMap: !production,
-    inlineSources: !production,
+    sourceMap: develop,
   }
 }
 
-let t = configureTypescript(true)
+let t = configureTypescript(false)
 
 export default t

@@ -1,10 +1,10 @@
-export function configureCommonJS(production) {
+export function configureCommonJS(develop) {
   return {
-    sourceMap: !production,
-    transformMixedEsModules: !production,
+    sourceMap: develop,
+    transformMixedEsModules: true,
   }
 }
 
-let cjs = configureCommonJS(true)
+let cjs = configureCommonJS(false)
 
 export default cjs

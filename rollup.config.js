@@ -1,3 +1,5 @@
+import child from 'child_process'
+
 import svelte from 'rollup-plugin-svelte'
 import typescript from '@rollup/plugin-typescript'
 import commonjs from '@rollup/plugin-commonjs'
@@ -6,23 +8,19 @@ import livereload from 'rollup-plugin-livereload'
 import { terser } from 'rollup-plugin-terser'
 import css from 'rollup-plugin-css-only'
 
-import child from 'child_process'
-
 import { configureSvelte } from './svelte.config.js'
 import { configureTypescript } from './typescript.config.js'
 import { configureCommonJS } from './commonjs.config.js'
 
-const production = !process.env.ROLLUP_WATCH
-
 function serve() {
 	let server
 
-	function toExit() {
+	const toExit = () => {
 		if (server) server.kill(0)
 	}
 
 	return {
-		writeBundle() {
+		writeBundle: () => {
 			if (server) return
 			server = child.spawn('npm', ['run', 'start', '--', '--dev'], {
 				stdio: ['ignore', 'inherit', 'inherit'],
@@ -35,36 +33,46 @@ function serve() {
 	};
 }
 
-export default {
-	input: 'src/main.ts',
+export function configureRollup(develop) {
+	if (develop) {
+		develop = true
+	}
 
-	output: {
-		sourcemap: !production,
-		format: 'iife',
-		name: 'app',
-		file: 'public/build/bundle.js'
-	},
+	return {
+		input: 'src/main.ts',
 
-	plugins: [
-		svelte(configureSvelte(production)),
-		typescript(configureTypescript(production)),
-		commonjs(configureCommonJS(production)),
+		output: {
+			sourcemap: develop,
+			format: 'iife',
+			name: 'app',
+			file: 'public/build/bundle.js'
+		},
 
-		css({
-			output: 'bundle.css',
-		}),
+		plugins: [
+			svelte(configureSvelte(develop)),
+			typescript(configureTypescript(develop)),
+			commonjs(configureCommonJS(develop)),
 
-		resolve({
-			browser: true,
-			dedupe: ['svelte'],
-		}),
+			css({
+				output: 'bundle.css',
+			}),
 
-		!production && serve(),
-		!production && livereload('public'),
-		
-		production && terser(),
-	],
-	watch: {
-		clearScreen: false,
-	},
+			resolve({
+				browser: true,
+				dedupe: ['svelte'],
+			}),
+
+			develop && serve(),
+			develop && livereload('public'),
+			
+			!develop && terser(),
+		],
+		watch: {
+			clearScreen: false,
+		},
+	}
 }
+
+let r = configureRollup(process.env.ROLLUP_WATCH)
+
+export default r
