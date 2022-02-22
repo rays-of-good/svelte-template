@@ -1,24 +1,11 @@
-import sveltePreprocess from 'svelte-preprocess'
-import nested from 'postcss-nested'
-import variables from 'postcss-simple-vars'
-import mixins from 'postcss-mixins'
-import autoprefixer from "autoprefixer"
-import cssnano from 'cssnano'
+import sveltePreprocess from "svelte-preprocess";
 
-export const configureSvelte = (develop) => {
-  return {
-    preprocess: sveltePreprocess({
-      sourceMap: develop,
-      postcss: {
-        plugins: [nested, variables, mixins, autoprefixer, cssnano]
-      },
+export default {
+  // Consult https://github.com/sveltejs/svelte-preprocess
+  // for more information about preprocessors
+  preprocess: [
+    sveltePreprocess({
+      postcss: true,
     }),
-    compilerOptions: {
-      dev: develop,
-    },
-  }
-}
-
-let s = configureSvelte(false)
-
-export default s
+  ],
+};
