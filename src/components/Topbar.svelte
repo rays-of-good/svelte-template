@@ -1,55 +1,58 @@
 <script>
-  import { fly } from "svelte/transition";
+	import { fly } from "svelte/transition";
 
-  let topbarMenu = true;
+	export let topbarMenu = false;
 </script>
 
 <div class="topbar background">
-  <button
-    on:click={() => {
-      topbarMenu = !topbarMenu;
-    }}
-  >
-    Menu</button
-  >
+	<button
+		on:click={() => {
+			topbarMenu = !topbarMenu;
+		}}
+	>
+		Menu
+	</button>
 </div>
 
 {#if topbarMenu}
-  <div class="topbarMenu background" transition:fly={{ y: -20, duration: 200 }}>
-    <button>Some</button>
-    <button>List</button>
-    <button>Items</button>
-  </div>
+	<div
+		class="topbarMenu background"
+		transition:fly={{ y: -20, duration: 200 }}
+	>
+		<button>Some</button>
+		<button>List</button>
+		<button>Items</button>
+	</div>
 {/if}
 
 <style>
-  .background {
-    background: grey;
-  }
+	.background {
+		background: grey;
+	}
 
-  .topbar {
-    display: flex;
-    padding: 10px;
-  }
+	.topbar {
+		display: flex;
+		padding: 10px;
+	}
 
-  .topbarMenu {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px;
-    position: absolute;
-  }
+	.topbarMenu {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 10px;
+		position: absolute;
+	}
 
-  .topbar button,
-  .topbarMenu button {
-    font-size: 2em;
-    border-radius: 4px;
-    color: whitesmoke;
-    transition: 0.1s;
-  }
+	.topbar button,
+	.topbarMenu button {
+		font-size: 2em;
+		border-radius: 4px;
+		color: whitesmoke;
+		transition: 0.1s;
+	}
 
-  .topbar button:hover,
-  .topbarMenu button:hover {
-    background-color: silver;
-  }
+	.topbar button:hover,
+	.topbarMenu button:hover {
+		background-color: silver;
+	}
 </style>
