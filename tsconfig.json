@@ -1,12 +1,12 @@
 {
   "extends": "@tsconfig/svelte/tsconfig.json",
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"],
   "compilerOptions": {
+    "alwaysStrict": true,
     "allowJs": true,
-    "checkJs": true,
     "target": "esnext",
-    "useDefineForClassFields": true,
+    "isolatedModules": true,
     "resolveJsonModule": true,
-    "main": "src/main.ts",
-  },
-  "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.svelte"]
+  }
 }

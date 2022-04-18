@@ -1,7 +1,7 @@
 import { serve, build } from "esbuild";
 import { svelte } from "./svelte.config.js"
 
-import sveltePlugin from "esbuild-svelte";
+import esbuildSvelte from "esbuild-svelte";
 
 const devel = process.argv.includes('--devel');
 
@@ -15,7 +15,7 @@ const bp = {
     outfile: 'public/build/bundle.js',
     mainFields: ['svelte', 'module', 'main'],
     plugins: [
-        sveltePlugin(svelte(devel))
+        esbuildSvelte(svelte(devel))
     ],
     sourcemap: devel,
     bundle: true,

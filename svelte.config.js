@@ -2,9 +2,11 @@ import sveltePreprocess from "svelte-preprocess";
 
 export const svelte = (devel) => {
   return {
-    compileOptions: {
+    preprocess: sveltePreprocess({
+      typescript: true,
+    }),
+    compilerOptions: {
       dev: devel,
-      preprocess: sveltePreprocess(),
       css: true,
     },
   };
