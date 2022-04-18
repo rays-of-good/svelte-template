@@ -1,4 +1,4 @@
-<script>
+<script type="ts">
 	export let name;
 </script>
 

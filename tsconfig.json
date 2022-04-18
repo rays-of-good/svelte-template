@@ -2,7 +2,9 @@
   "extends": "@tsconfig/svelte/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
+    "checkJs": true,
     "target": "esnext",
+    "useDefineForClassFields": true,
     "resolveJsonModule": true,
     "main": "src/main.ts",
   },
