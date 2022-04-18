@@ -1,5 +1,2 @@
-.idea
-.vscode
+public/build
 node_modules
-dist
-public

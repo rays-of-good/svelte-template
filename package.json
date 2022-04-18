@@ -1,25 +1,20 @@
 {
   "name": "svelte-template",
-  "private": true,
-  "version": "0.0.0",
   "type": "module",
+  "version": "1.0.0",
+  "main": "public/build/bundle",
+  "description": "Svelte template based on esbuild",
   "scripts": {
-    "devel": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "check": "svelte-check --tsconfig ./tsconfig.json"
+    "build": "node esbuild",
+    "devel": "node esbuild --devel"
   },
   "devDependencies": {
-    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.30",
     "@tsconfig/svelte": "^3.0.0",
-    "autoprefixer": "^10.4.2",
-    "postcss": "^8.4.5",
-    "postcss-load-config": "^3.1.1",
-    "svelte": "^3.44.0",
-    "svelte-check": "^2.2.7",
-    "svelte-preprocess": "^4.10.1",
-    "tslib": "^2.3.1",
-    "typescript": "^4.5.4",
-    "vite": "^2.8.0"
-  }
+    "esbuild": "^0.14.36",
+    "esbuild-svelte": "^0.7.0",
+    "svelte": "^3.47.0",
+    "svelte-preprocess": "^4.10.6",
+    "typescript": "^4.6.3"
+  },
+  "license": "MIT"
 }
