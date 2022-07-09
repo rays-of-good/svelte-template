@@ -1,10 +1,3 @@
-import Main from './Main.svelte';
+import Root from './Root.svelte';
 
-const app = new Main({
-	target: document.body,
-	props: {
-		name: 'world'
-	}
-});
-
-export default app;
+export default new Root({ target: document.body });

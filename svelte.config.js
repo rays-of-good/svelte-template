@@ -1,15 +1,19 @@
-import sveltePreprocess from "svelte-preprocess";
+import preprocess from "svelte-preprocess";
 
 export const svelte = (devel) => {
   return {
-    preprocess: sveltePreprocess({
-      typescript: true,
-    }),
+    preprocess: [
+      preprocess({
+        sourceMap: devel,
+        typescript: preprocess.typescript(),
+        sass: preprocess.sass()
+      })
+    ],
     compilerOptions: {
+      hydratable: true,
       dev: devel,
-      css: true,
     },
   };
-}
+};
 
 export default svelte(true);
